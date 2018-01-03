@@ -38,6 +38,8 @@ debug: build
 debug-memory: build
 	$(DEBUGGER) --leak-check=full --show-leak-kinds=all ./$(EXE)
 
+test: build
+
 rebuild: clean build
 
 #######################################################################################################################
