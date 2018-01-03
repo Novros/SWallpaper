@@ -1,3 +1,10 @@
+# netbeans project files
+nbproject/
+.dep.inc
+dist/
+build/
+swallpaper
+
 # Prerequisites
 *.d
 
