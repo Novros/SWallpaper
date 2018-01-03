@@ -1,4 +1,12 @@
 language: cpp
+sudo: required
+
+before_install:
+  - sudo apt-get install libx11-dev 
+  - sudo apt-get install libimlib2-dev
+
+script: make && make test
+
 compiler:
   - clang
   - gcc
