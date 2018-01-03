@@ -7,7 +7,7 @@ RM = rm -f
 DEBUGGER = valgrind
 #--------------------------------------------- Compiling flags --------------------------------------------------------
 # C++ 2011: -std=c++11, for older compiler -std=c++0x.
-ISO_FLAGS = -std=c++14
+ISO_FLAGS = -std=c++11
 WARNINGS_FLAGS = -Wall -c
 OPTIMIZATION_FLAGS = -O3 -march=native
 PROFILING_FLAGS = -fprofile-arcs -ftest-coverage -fprofile-arcs
