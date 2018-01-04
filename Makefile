@@ -12,14 +12,14 @@ WARNINGS_FLAGS = -Wall -c
 OPTIMIZATION_FLAGS = -O3 -march=native
 PROFILING_FLAGS = -fprofile-arcs -ftest-coverage -fprofile-arcs
 DEBUGGIN_FLAGS = -ggdb
-CXX_FLAGS = $(ISO_FLAGS) $(OPTIMIZATION_FLAGS) $(shell imlib2-config --cflags)
+CXX_FLAGS = $(ISO_FLAGS) $(WARNING_FLAGS) $(OPTIMIZATION_FLAGS) $(shell imlib2-config --cflags)
 #----------------------------------------------- Linking flags --------------------------------------------------------
 LIN_PROFILING_FLAGS = -fprofile-arcs -pthread -pg
-LD_FLAGS = $(CPPFLAGS)
+LD_FLAGS = $(LIN_PROFILING_FLAGS) $(CPPFLAGS)
 LD_LIBS = -lX11 $(shell imlib2-config --libs)
 #--------------------------------------------- Other variables --------------------------------------------------------
 EXE = swallpaper
-OBJECTS = objects/main.o objects/xWallpaperDisplay.o objects/factory.o objects/wallpaperImage.o
+OBJECTS = objects/main.o objects/xWallpaperDisplay.o objects/factory.o objects/wallpaperImage.o objects/fileManager.o
 #######################################################################################################################
 # Targets
 all: $(EXE)
@@ -59,4 +59,7 @@ objects/wallpaperImage.o: src/wallpaper/X11/XWallpaperImage.cpp src/wallpaper/Wa
 	$(CXX) $(CXX_FLAGS) -c $< -o $@
 
 objects/factory.o: src/factory/X11/XFactory.cpp src/factory/Factory.h src/factory/X11/XFactory.h 
+	$(CXX) $(CXX_FLAGS) -c $< -o $@
+
+objects/fileManager.o: src/FileManager.cpp src/FileManager.h
 	$(CXX) $(CXX_FLAGS) -c $< -o $@
