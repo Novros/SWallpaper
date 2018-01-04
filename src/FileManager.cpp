@@ -15,8 +15,7 @@ void FileManager::processPaths(const set<string> &paths) {
 }
 
 set<string> FileManager::getPathsFromDirectory(const string &path) {
-    return set<string>();
-    // TODO Implement
+    return set<string>(); // TODO: #1 - Add support for directories
 }
 
 bool FileManager::isDirectory(const string &path) {

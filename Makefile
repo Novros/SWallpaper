@@ -19,7 +19,7 @@ LD_FLAGS = $(LIN_PROFILING_FLAGS) $(CPPFLAGS)
 LD_LIBS = -lX11 $(shell imlib2-config --libs)
 #--------------------------------------------- Other variables --------------------------------------------------------
 EXE = swallpaper
-OBJECTS = objects/main.o objects/xWallpaperDisplay.o objects/factory.o objects/wallpaperImage.o objects/fileManager.o
+OBJECTS = objects/main.o objects/xWallpaperDisplay.o objects/factory.o objects/wallpaperImage.o objects/fileManager.o objects/wallpaperManager.o
 #######################################################################################################################
 # Targets
 all: $(EXE)
@@ -62,4 +62,7 @@ objects/factory.o: src/factory/X11/XFactory.cpp src/factory/Factory.h src/factor
 	$(CXX) $(CXX_FLAGS) -c $< -o $@
 
 objects/fileManager.o: src/FileManager.cpp src/FileManager.h
+	$(CXX) $(CXX_FLAGS) -c $< -o $@
+
+objects/wallpaperManager.o: src/WallpaperManager.cpp src/WallpaperManager.h
 	$(CXX) $(CXX_FLAGS) -c $< -o $@

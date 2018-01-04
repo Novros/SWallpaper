@@ -16,6 +16,7 @@ XWallpaperImage::~XWallpaperImage() {
 
 void XWallpaperImage::render(const Drawable &drawable, const int & width, const int & height, const int & x, const int & y) {
     if (img != nullptr) {
+        imlib_context_set_image(img);
         imlib_context_set_drawable(drawable);
         imlib_context_set_anti_alias(antialias);
         imlib_context_set_dither(dither);

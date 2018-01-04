@@ -1,11 +1,13 @@
 #include <iostream>
 #include <string>
+#include <list>
 
 #include "factory/Factory.h"
 #include "factory/X11/XFactory.h"
 #include "display/WallpaperDisplay.h"
 #include "wallpaper/WallpaperImage.h"
 #include "FileManager.h"
+#include "WallpaperManager.h"
 
 using namespace std;
 
@@ -30,17 +32,19 @@ set<string> processArguments(const int &argc, char const* const*argv) {
     }
 }
 
-void displayImages(Factory *factory, const set<string> &imagePaths) {
+WallpaperManager createManager(Factory *factory, const set<string> &imagePaths) {
     WallpaperDisplay *display = factory->createDisplay();
-
+    
+    list<WallpaperImage*> images = list<WallpaperImage*>();
     for (auto imagePath : imagePaths) {
-        WallpaperImage *image = factory->createWallpaper(imagePath);
-        display->renderImage(image);
-        delete image;
+	images.push_back(factory->createWallpaper(imagePath));
     }
+
+    return WallpaperManager(display, images);
 }
 
 int main(int argc, char const* argv[]) {
     FileManager fileManager = FileManager(processArguments(argc, argv));
-    displayImages(new XFactory(), fileManager.getImagePaths());
+    WallpaperManager manager = createManager(new XFactory(), fileManager.getImagePaths());
+    manager.run(); // FIXME - Run in separate thread
 }
