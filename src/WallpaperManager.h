@@ -39,7 +39,8 @@ public:
         running = false;
     }
 private:
-
+    void setWallpaperOnce() const;
+    void changeWallpapers() const;
 };
 
 #endif /* WALLPAPERMANAGER_H */

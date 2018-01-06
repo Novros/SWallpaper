@@ -19,6 +19,11 @@ void printHelp() {
 }
 
 set<string> processArguments(const int &argc, char const* const*argv) {
+    /* TODO Add options
+     * - add argument parser
+     * - h for help
+     * - d - for delay
+     */
     if (argc < 2) {
         cout << "Error: No image/s was given.\n" << endl;
         printHelp();
@@ -46,5 +51,5 @@ WallpaperManager createManager(Factory *factory, const set<string> &imagePaths) 
 int main(int argc, char const* argv[]) {
     FileManager fileManager = FileManager(processArguments(argc, argv));
     WallpaperManager manager = createManager(new XFactory(), fileManager.getImagePaths());
-    manager.run(); // FIXME - Run in separate thread
+    manager.run();
 }
