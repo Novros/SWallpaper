@@ -5,6 +5,12 @@ dist/
 build/
 swallpaper
 
+# idea projects
+.idea/
+
+# cmake files
+cmake-build-debug/
+
 # Prerequisites
 *.d
 

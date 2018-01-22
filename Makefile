@@ -32,11 +32,14 @@ clean:
 distclean: clean
 	$(RM) swallpaper
 
+run: build
+	./$(EXE) $(image)
+
 debug: build
 	$(DEBUGGER) ./$(EXE)
 
 debug-memory: build
-	$(DEBUGGER) --leak-check=full --show-leak-kinds=all ./$(EXE)
+	$(DEBUGGER) --leak-check=full --show-leak-kinds=all ./$(EXE) $(image)
 
 test: build
 
