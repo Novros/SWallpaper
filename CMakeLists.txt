@@ -9,6 +9,7 @@ SET(OPTIMIZATION_FLAGS "-O3 -march=native")
 SET(PROFILING_FLAGS "-fprofile-arcs -ftest-coverage -fprofile-arcs")
 SET(DEBUGGIN_FLAGS "-ggdb")
 SET(CMAKE_CXX_FLAGS "${ISO_FLAGS} ${WARNING_FLAGS} ${OPTIMIZATION_FLAGS}") #${shell imlib2-config --cflags}
+SET(CMAKE_CXX_FLAGS_DEBUG  "-D_DEBUG")
 
 #----------------------------------------------- Linking flags ---------------------------------------------------------
 SET(LIN_PROFILING_FLAGS "-fprofile-arcs -pthread -pg")
@@ -18,17 +19,17 @@ SET(CMAKE_EXE_LINKER_FLAGS "${LD_FLAGS} ${LD_LIBS}")
 
 #--------------------------------------------------- Sources -----------------------------------------------------------
 add_executable(SWallpaper
-        src/display/X11/XWallpaperDisplay.cpp
-        src/display/X11/XWallpaperDisplay.h
+        src/display/XWallpaperDisplay.cpp
+        src/display/XWallpaperDisplay.h
         src/display/WallpaperDisplay.h
-        src/factory/X11/XFactory.cpp
-        src/factory/X11/XFactory.h
+        src/factory/ImlibFactory.cpp
+        src/factory/ImlibFactory.h
         src/factory/Factory.h
-        src/wallpaper/X11/XWallpaperImage.cpp
-        src/wallpaper/X11/XWallpaperImage.h
+        src/wallpaper/ImlibWallpaperImage.cpp
+        src/wallpaper/ImlibWallpaperImage.h
         src/wallpaper/WallpaperImage.h
-        src/FileManager.cpp
-        src/FileManager.h
+        src/manager/FileManager.cpp
+        src/manager/FileManager.h
         src/main.cpp
-        src/WallpaperManager.cpp
-        src/WallpaperManager.h)
+        src/manager/WallpaperManager.cpp
+        src/manager/WallpaperManager.h src/display/ImlibWallpaperDisplay.cpp src/display/ImlibWallpaperDisplay.h)

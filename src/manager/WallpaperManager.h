@@ -5,8 +5,8 @@
 #include <chrono>
 #include <thread>
 
-#include "display/WallpaperDisplay.h"
-#include "wallpaper/WallpaperImage.h"
+#include "../display/WallpaperDisplay.h"
+#include "../wallpaper/WallpaperImage.h"
 
 #define DEFAULT_DELAY 1000;
 
@@ -27,6 +27,15 @@ public:
     WallpaperManager(WallpaperDisplay* display, const std::list<WallpaperImage*> &images) {
         this->display = display;
         this->images = images;
+    }
+
+    ~WallpaperManager() {
+        for (auto img : images) {
+            delete img;
+        }
+        images.clear();
+
+        delete display;
     }
 
     inline void setWallpaperDelay(const int &delay) {

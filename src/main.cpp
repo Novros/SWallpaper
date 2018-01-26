@@ -1,13 +1,10 @@
 #include <iostream>
-#include <string>
 #include <list>
 
 #include "factory/Factory.h"
-#include "factory/X11/XFactory.h"
-#include "display/WallpaperDisplay.h"
-#include "wallpaper/WallpaperImage.h"
-#include "FileManager.h"
-#include "WallpaperManager.h"
+#include "factory/ImlibFactory.h"
+#include "manager/FileManager.h"
+#include "manager/WallpaperManager.h"
 
 using namespace std;
 
@@ -23,6 +20,7 @@ set<string> processArguments(const int &argc, char const* const*argv) {
      * - add argument parser
      * - h for help
      * - d - for delay
+     * - s - frames per second
      */
     if (argc < 2) {
         cout << "Error: No image/s was given.\n" << endl;
@@ -39,7 +37,7 @@ set<string> processArguments(const int &argc, char const* const*argv) {
 
 WallpaperManager createManager(Factory *factory, const set<string> &imagePaths) {
     WallpaperDisplay *display = factory->createDisplay();
-    
+
     list<WallpaperImage*> images = list<WallpaperImage*>();
     for (auto imagePath : imagePaths) {
 	images.push_back(factory->createWallpaper(imagePath));
@@ -50,6 +48,6 @@ WallpaperManager createManager(Factory *factory, const set<string> &imagePaths) 
 
 int main(int argc, char const* argv[]) {
     FileManager fileManager = FileManager(processArguments(argc, argv));
-    WallpaperManager manager = createManager(new XFactory(), fileManager.getImagePaths());
+    WallpaperManager manager = createManager(new ImlibFactory(), fileManager.getImagePaths());
     manager.run();
 }

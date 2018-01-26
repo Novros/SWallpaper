@@ -19,7 +19,7 @@ LD_FLAGS = $(LIN_PROFILING_FLAGS) $(CPPFLAGS)
 LD_LIBS = -lX11 $(shell imlib2-config --libs)
 #--------------------------------------------- Other variables --------------------------------------------------------
 EXE = swallpaper
-OBJECTS = objects/main.o objects/xWallpaperDisplay.o objects/factory.o objects/wallpaperImage.o objects/fileManager.o objects/wallpaperManager.o
+OBJECTS = objects/main.o objects/xWallpaperDisplay.o objects/imlibWallpaperDisplay.o objects/factory.o objects/wallpaperImage.o objects/fileManager.o objects/wallpaperManager.o
 #######################################################################################################################
 # Targets
 all: $(EXE)
@@ -55,17 +55,20 @@ objectDir:
 objects/main.o: src/main.cpp
 	$(CXX) $(CXX_FLAGS) -c $< -o $@
 
-objects/xWallpaperDisplay.o: src/display/X11/XWallpaperDisplay.cpp src/display/X11/XWallpaperDisplay.h
+objects/xWallpaperDisplay.o: src/display/XWallpaperDisplay.cpp src/display/XWallpaperDisplay.h
 	$(CXX) $(CXX_FLAGS) -c $< -o $@
 
-objects/wallpaperImage.o: src/wallpaper/X11/XWallpaperImage.cpp src/wallpaper/WallpaperImage.h src/wallpaper/X11/XWallpaperImage.h 
+objects/imlibWallpaperDisplay.o: src/display/ImlibWallpaperDisplay.cpp src/display/ImlibWallpaperDisplay.h
 	$(CXX) $(CXX_FLAGS) -c $< -o $@
 
-objects/factory.o: src/factory/X11/XFactory.cpp src/factory/Factory.h src/factory/X11/XFactory.h 
+objects/wallpaperImage.o: src/wallpaper/ImlibWallpaperImage.cpp src/wallpaper/WallpaperImage.h src/wallpaper/ImlibWallpaperImage.h
 	$(CXX) $(CXX_FLAGS) -c $< -o $@
 
-objects/fileManager.o: src/FileManager.cpp src/FileManager.h
+objects/factory.o: src/factory/ImlibFactory.cpp src/factory/Factory.h src/factory/ImlibFactory.h
 	$(CXX) $(CXX_FLAGS) -c $< -o $@
 
-objects/wallpaperManager.o: src/WallpaperManager.cpp src/WallpaperManager.h
+objects/fileManager.o: src/manager/FileManager.cpp src/manager/FileManager.h
+	$(CXX) $(CXX_FLAGS) -c $< -o $@
+
+objects/wallpaperManager.o: src/manager/WallpaperManager.cpp src/manager/WallpaperManager.h
 	$(CXX) $(CXX_FLAGS) -c $< -o $@

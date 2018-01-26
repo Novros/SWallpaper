@@ -1,20 +1,20 @@
-#include "XWallpaperImage.h"
+#include "ImlibWallpaperImage.h"
 
-XWallpaperImage::XWallpaperImage(const std::string &imgPath) {
+ImlibWallpaperImage::ImlibWallpaperImage(const std::string &imgPath) {
     img = imlib_load_image(imgPath.c_str());
 
     if (img != nullptr) {
         imlib_context_set_image(img);
         width = imlib_image_get_width();
         height = imlib_image_get_height();
+        imlib_free_image();
     }
 }
 
-XWallpaperImage::~XWallpaperImage() {
-    //imlib_free_image(); // FIXME - need only free this image not last
+ImlibWallpaperImage::~ImlibWallpaperImage() {
 }
 
-void XWallpaperImage::render(const Drawable &drawable, const int & width, const int & height, const int & x, const int & y) {
+void ImlibWallpaperImage::render(const Drawable &drawable, const int & width, const int & height, const int & x, const int & y) {
     if (img != nullptr) {
         imlib_context_set_image(img);
         imlib_context_set_drawable(drawable);
@@ -28,6 +28,7 @@ void XWallpaperImage::render(const Drawable &drawable, const int & width, const 
                 width == UNDEFINED_SIZE ? this->width : width,
                 height == UNDEFINED_SIZE ? this->height : height
                 );
+    	imlib_free_image();
     }
 }
 

@@ -4,9 +4,9 @@
 #include <string>
 #include <Imlib2.h>
 
-#include "../WallpaperImage.h"
+#include "WallpaperImage.h"
 
-class XWallpaperImage : public WallpaperImage {
+class ImlibWallpaperImage : public WallpaperImage {
     // Variables
 private:
     Imlib_Image img = nullptr;
@@ -16,8 +16,8 @@ private:
 
     // Methods
 public:
-    XWallpaperImage(const std::string &imgPath);
-    ~XWallpaperImage();
+    ImlibWallpaperImage(const std::string &imgPath);
+    ~ImlibWallpaperImage();
 
     void render(const Drawable &drawable, const int & width = UNDEFINED_SIZE, const int & height = UNDEFINED_SIZE, const int & x = 0, const int & y = 0);
 

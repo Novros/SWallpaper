@@ -1,5 +1,5 @@
 #include "WallpaperManager.h"
-#include "display/WallpaperDisplay.h"
+#include "../display/WallpaperDisplay.h"
 
 void WallpaperManager::run() const {
     if (images.empty()) {
