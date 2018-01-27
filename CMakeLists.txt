@@ -9,7 +9,7 @@ SET(OPTIMIZATION_FLAGS "-O3 -march=native")
 SET(PROFILING_FLAGS "-fprofile-arcs -ftest-coverage -fprofile-arcs")
 SET(DEBUGGIN_FLAGS "-ggdb")
 SET(CMAKE_CXX_FLAGS "${ISO_FLAGS} ${WARNING_FLAGS} ${OPTIMIZATION_FLAGS}") #${shell imlib2-config --cflags}
-SET(CMAKE_CXX_FLAGS_DEBUG  "-D_DEBUG")
+SET(CMAKE_CXX_FLAGS_DEBUG "-D_DEBUG")
 
 #----------------------------------------------- Linking flags ---------------------------------------------------------
 SET(LIN_PROFILING_FLAGS "-fprofile-arcs -pthread -pg")
@@ -32,4 +32,11 @@ add_executable(SWallpaper
         src/manager/FileManager.h
         src/main.cpp
         src/manager/WallpaperManager.cpp
-        src/manager/WallpaperManager.h src/display/ImlibWallpaperDisplay.cpp src/display/ImlibWallpaperDisplay.h)
+        src/manager/WallpaperManager.h
+        src/display/ImlibWallpaperDisplay.cpp
+        src/display/ImlibWallpaperDisplay.h
+        )
+
+add_test(
+        swallpaper-tests test/SampleTest.cpp
+)

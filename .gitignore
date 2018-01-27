@@ -4,6 +4,7 @@ nbproject/
 dist/
 build/
 swallpaper
+swallpaper-tests
 
 # idea projects
 .idea/
