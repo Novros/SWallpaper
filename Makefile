@@ -56,7 +56,7 @@ $(EXE): objectDir $(OBJECTS)
 	$(LD) -o $(EXE) $(OBJECTS) $(LD_FLAGS) $(LD_LIBS)
 
 $(TEST_EXE): $(TESTS)
-	$(CXX) -o $(TEST_EXE) $(TESTS)
+	$(CXX)  $(CXX_FLAGS) -o $(TEST_EXE) $(TESTS)
 
 objectDir:
 	mkdir -p objects
